@@ -17,22 +17,19 @@ public class FreelancerService {
     }
 
     public void addFreelancer(Freelancer freelancer) {
-        String qry = "INSERT INTO `freelancer`(`idUser`, `nom`, `prenom`, `adresseMail`, `password`, `dateNaissance`, `dateCreationCompte`, `competences`, `domaineExpertise`, `tauxHoraire`, `certifications`, `niveauExperience`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String qry = "INSERT INTO `freelancer`(`nom`, `adresseMail`, `password`, `dateNaissance`, `dateCreationCompte`, `competences`, `domaineExpertise`, `tauxHoraire`, `certifications`, `niveauExperience`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = cnx.prepareStatement(qry);
-            pstm.setInt(1, freelancer.getIdUser());
-            pstm.setString(2, freelancer.getNom());
-            pstm.setString(3, freelancer.getPrenom());
-            pstm.setString(4, freelancer.getAdresseMail());
-            pstm.setString(5, freelancer.getPassword());
-            pstm.setDate(6, new java.sql.Date(freelancer.getDateNaissance().getTime()));
-            pstm.setDate(7, new java.sql.Date(freelancer.getDateCreationCompte().getTime()));
-            // La conversion de la liste en chaîne de caractères doit être gérée ici pour les colonnes `competences` et `certifications`
-            pstm.setString(8, String.join(",", freelancer.getCompetences()));
-            pstm.setString(9, freelancer.getDomaineExpertise());
-            pstm.setDouble(10, freelancer.getTauxHoraire());
-            pstm.setString(11, String.join(",", freelancer.getCertifications()));
-            pstm.setString(12, freelancer.getNiveauExperience().name());
+            pstm.setString(1, freelancer.getNom());
+            pstm.setString(2, freelancer.getAdresseMail());
+            pstm.setString(3, freelancer.getPassword());
+            pstm.setDate(4, new java.sql.Date(freelancer.getDateNaissance().getTime()));
+            pstm.setDate(5, new java.sql.Date(freelancer.getDateCreationCompte().getTime()));
+            pstm.setString(6, String.join(",", freelancer.getCompetences()));
+            pstm.setString(7, freelancer.getDomaineExpertise());
+            pstm.setDouble(8, freelancer.getTauxHoraire());
+            pstm.setString(9, String.join(",", freelancer.getCertifications()));
+            pstm.setString(10, freelancer.getNiveauExperience().name());
             pstm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -49,7 +46,6 @@ public class FreelancerService {
                 Freelancer f = new Freelancer();
                 f.setIdUser(rs.getInt("idFreelancer"));
                 f.setNom(rs.getString("nomFreelancer"));
-                f.setPrenom(rs.getString("prenomFreelancer"));
                 f.setAdresseMail(rs.getString("adresseMailFreelancer"));
                 f.setPassword(rs.getString("passwordFreelancer"));
                 f.setDateNaissance(rs.getDate("dateNaissanceFreelancer"));
@@ -68,21 +64,20 @@ public class FreelancerService {
     }
 
     public void updateFreelancer(Freelancer freelancer) {
-        String qry = "UPDATE `freelancer` SET `nom`=?,`prenom`=?,`adresseMail`=?,`password`=?,`dateNaissance`=?,`dateCreationCompte`=?,`competences`=?,`domaineExpertise`=?,`tauxHoraire`=?,`certifications`=?,`niveauExperience`=? WHERE `idUser`=?";
+        String qry = "UPDATE `freelancer` SET `nom`=?, `adresseMail`=?,`password`=?,`dateNaissance`=?,`dateCreationCompte`=?,`competences`=?,`domaineExpertise`=?,`tauxHoraire`=?,`certifications`=?,`niveauExperience`=? WHERE `idUser`=?";
         try {
             PreparedStatement pstm = cnx.prepareStatement(qry);
             pstm.setString(1, freelancer.getNom());
-            pstm.setString(2, freelancer.getPrenom());
-            pstm.setString(3, freelancer.getAdresseMail());
-            pstm.setString(4, freelancer.getPassword());
-            pstm.setDate(5, new java.sql.Date(freelancer.getDateNaissance().getTime()));
-            pstm.setDate(6, new java.sql.Date(freelancer.getDateCreationCompte().getTime()));
-            pstm.setString(7, String.join(",", freelancer.getCompetences()));
-            pstm.setString(8, freelancer.getDomaineExpertise());
-            pstm.setDouble(9, freelancer.getTauxHoraire());
-            pstm.setString(10, String.join(",", freelancer.getCertifications()));
-            pstm.setString(11, freelancer.getNiveauExperience().name());
-            pstm.setInt(12, freelancer.getIdUser());
+            pstm.setString(2, freelancer.getAdresseMail());
+            pstm.setString(3, freelancer.getPassword());
+            pstm.setDate(4, new java.sql.Date(freelancer.getDateNaissance().getTime()));
+            pstm.setDate(5, new java.sql.Date(freelancer.getDateCreationCompte().getTime()));
+            pstm.setString(6, String.join(",", freelancer.getCompetences()));
+            pstm.setString(7, freelancer.getDomaineExpertise());
+            pstm.setDouble(8, freelancer.getTauxHoraire());
+            pstm.setString(9, String.join(",", freelancer.getCertifications()));
+            pstm.setString(10, freelancer.getNiveauExperience().name());
+            pstm.setInt(11, freelancer.getIdUser());
             pstm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

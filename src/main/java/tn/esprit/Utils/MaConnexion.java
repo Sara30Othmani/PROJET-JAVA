@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class MaConnexion {
 
-    private final String url = "jdbc:mysql://localhost:3306/Projet";
+    private final String url = "jdbc:mysql://localhost:3306/java";
     private final String login = "root";
-    private final String pwd = "";
+    private final String pwd = "root";
 
     private Connection cnx;
 
@@ -18,7 +18,7 @@ public class MaConnexion {
     public MaConnexion(){
         try {
             cnx = DriverManager.getConnection(url, login, pwd);
-            System.out.println("Connexion etablie !");
+            System.out.println("la connexion a été établie !");
         } catch (SQLException e) {
             System.err.println("Erreur de connexion !");
             System.out.println(e.getMessage());
