@@ -1,8 +1,8 @@
 package tn.esprit.models;
 
 public enum NiveauExperience {
-    Debutant,
-    Intermediaire,
-    Experimente,
+    Beginner,
+    Intermediate,
+    Experienced,
     Expert
 }
