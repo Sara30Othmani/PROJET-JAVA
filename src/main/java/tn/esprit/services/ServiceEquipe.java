@@ -1,7 +1,6 @@
 package tn.esprit.services;
 
 import tn.esprit.models.Equipe;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,15 @@ public class ServiceEquipe {
         return equipes;
     }
 
+    public Equipe getById(int id) {
+        for (Equipe equipe : equipes) {
+            if (equipe.getId() == id) {
+                return equipe;
+            }
+        }
+        return null;
+    }
+
     public void update(Equipe equipe) {
         for (Equipe e : equipes) {
             if (e.getId() == equipe.getId()) {
@@ -34,5 +42,21 @@ public class ServiceEquipe {
 
     public void delete(Equipe equipe) {
         equipes.removeIf(e -> e.getId() == equipe.getId());
+    }
+
+    public void deleteById(int id) {
+        equipes.removeIf(equipe -> equipe.getId() == id);
+    }
+
+    public void clear() {
+        equipes.clear();
+    }
+
+    public boolean contains(Equipe equipe) {
+        return equipes.contains(equipe);
+    }
+
+    public int size() {
+        return equipes.size();
     }
 }

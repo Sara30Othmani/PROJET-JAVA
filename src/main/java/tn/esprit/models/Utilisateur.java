@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Utilisateur {
     private int idUser;
     private String nom;
+    private String prenom;
     private String adresseMail;
     private String password;
     private Date dateNaissance;
@@ -15,6 +16,7 @@ public class Utilisateur {
     public Utilisateur() {
         this.idUser = idUser;
         this.nom = nom;
+        this.prenom = prenom;
         this.adresseMail = adresseMail;
         this.password = password;
         this.dateNaissance = dateNaissance;
@@ -36,6 +38,14 @@ public class Utilisateur {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getAdresseMail() {
@@ -75,6 +85,7 @@ public class Utilisateur {
         return "Utilisateur{" +
                 "idUser=" + idUser +
                 ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
                 ", adresseMail='" + adresseMail + '\'' +
                 ", password='" + password + '\'' +
                 ", dateNaissance=" + dateNaissance +
@@ -84,6 +95,6 @@ public class Utilisateur {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, nom, adresseMail, password, dateNaissance, dateCreationCompte);
+        return Objects.hash(idUser, nom, prenom, adresseMail, password, dateNaissance, dateCreationCompte);
     }
 }
