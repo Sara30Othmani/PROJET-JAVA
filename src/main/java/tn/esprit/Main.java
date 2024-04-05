@@ -10,30 +10,58 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private Stage primaryStage;
+    private Scene mainScene;
+    private Parent loginRoot;
+    private Parent signUpRoot;
+    private Parent resetPasswordRoot;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // Load the second FXML file
-        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/LogInUI.fxml"));
-        Parent root2 = loader2.load();
-        Scene scene2 = new Scene(root2);
+
+        /* Crée un serveur HTTP local sur le port 8080
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        server.createContext("/", exchange -> {
+            // Lorsqu'une requête est reçue sur le chemin racine "/", renvoie l'URL complète
+            String response = "URL de votre application : http://localhost:8080/";
+            exchange.sendResponseHeaders(200, response.getBytes().length);
+            exchange.getResponseBody().write(response.getBytes());
+            exchange.close();
+        });
+        server.start();
+        System.out.println("Serveur local démarré sur le port 8080");*/
 
 
-        // Load the first FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUp.fxml"));
-        Parent root = loader.load();
-        Scene scene1 = new Scene(root);
 
+        this.primaryStage = primaryStage;
 
-        // Load the third FXML file
-        FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/ResetPassword.fxml"));
-        Parent root3 = loader3.load();
-        Scene scene3 = new Scene(root3);
+        // Load the FXML files
+        loginRoot = FXMLLoader.load(getClass().getResource("/LogInUI.fxml"));
+        signUpRoot = FXMLLoader.load(getClass().getResource("/SignUp.fxml"));
+        resetPasswordRoot = FXMLLoader.load(getClass().getResource("/ResetPassword.fxml"));
 
-        // Set initial scene
-        primaryStage.setScene(scene2);
-        //primaryStage.setTitle("Sign Up");
+        // Create the main scene
+        mainScene = new Scene(loginRoot);
+
+        // Set the main scene
+        primaryStage.setScene(mainScene);
+        primaryStage.setTitle("Your Application Title");
         primaryStage.show();
+    }
 
+    // Method to switch to the sign up view
+    public void switchToSignUp() {
+        mainScene.setRoot(signUpRoot);
+    }
+
+    // Method to switch to the login view
+    public void switchToLogIn() {
+        mainScene.setRoot(loginRoot);
+    }
+
+    // Method to switch to the reset password view
+    public void switchToResetPassword() {
+        mainScene.setRoot(resetPasswordRoot);
     }
 
     public static void main(String[] args) {

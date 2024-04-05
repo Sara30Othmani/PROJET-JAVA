@@ -43,11 +43,6 @@
                 <Font size="13.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="351.0" layoutY="733.0" prefHeight="21.0" prefWidth="107.0" text="Log in" textFill="#0044ff">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Label>
         <DatePicker fx:id="TFBirthDate" layoutX="262.0" layoutY="453.0" prefHeight="25.0" prefWidth="284.0" />
         <Label layoutX="126.0" layoutY="457.0" prefHeight="17.0" prefWidth="107.0" text="Date of birth :" />
         <TextField fx:id="TFName" layoutX="261.0" layoutY="344.0" prefHeight="25.0" prefWidth="284.0" />
@@ -61,5 +56,6 @@
                 <Font size="20.0" />
             </font>
         </Button>
+      <Button fx:id="RedirectLogIn" layoutX="365.0" layoutY="739.0" mnemonicParsing="false" onAction="#RedirectLogIn" prefHeight="35.0" prefWidth="79.0" text="Log In" />
     </children>
 </AnchorPane>
