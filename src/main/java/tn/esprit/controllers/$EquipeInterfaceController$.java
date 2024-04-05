@@ -3,13 +3,20 @@ package tn.esprit.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import tn.esprit.Utils.MaConnexion;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import tn.esprit.services.GoogleTranslate;
 
 public class $EquipeInterfaceController$ {
 
@@ -36,6 +43,40 @@ public class $EquipeInterfaceController$ {
         private TextField lbname121;
         @FXML
         private TextField lbname111;
+        @FXML
+        private Label nom;
+        @FXML
+        private Label id;
+        @FXML
+        private Label des;
+        @FXML
+        private Label mem;
+        @FXML
+        private Label bud;
+        @FXML
+        private Label eq;
+        @FXML
+        private Label eq1;
+        @FXML
+        private Label eq2;
+        @FXML
+        private Label eq3;
+        @FXML
+        private Label eq4;
+        @FXML
+        private Button affiche;
+        @FXML
+        private Button supp;
+        @FXML
+        private Button ajout;
+        @FXML
+        private Button annule;
+        @FXML
+        private Button modifier;
+
+
+
+
 
         @FXML
         void AddEquipe(ActionEvent event) {
@@ -174,5 +215,28 @@ public class $EquipeInterfaceController$ {
                 lbname1.clear();
                 lbname11.clear();
                 lbname2.clear();
+        }
+
+        @FXML
+        private void traduire(ActionEvent event) {
+                try {
+                        nom.setText(GoogleTranslate.translate("en",nom.getText()));
+                        id.setText(GoogleTranslate.translate("en",id.getText()));
+                        des.setText(GoogleTranslate.translate("en",des.getText()));
+                        mem.setText(GoogleTranslate.translate("en",mem.getText()));
+                        bud.setText(GoogleTranslate.translate("en",bud.getText()));
+                        eq.setText(GoogleTranslate.translate("en",eq.getText()));
+                        eq1.setText(GoogleTranslate.translate("en",eq1.getText()));
+                        eq2.setText(GoogleTranslate.translate("en",eq2.getText()));
+                        eq3.setText(GoogleTranslate.translate("en",eq3.getText()));
+                        eq4.setText(GoogleTranslate.translate("en",eq4.getText()));
+                        annule.setText(GoogleTranslate.translate("en",annule.getText()));
+                        affiche.setText(GoogleTranslate.translate("en",affiche.getText()));
+                        ajout.setText(GoogleTranslate.translate("en",ajout.getText()));
+                        modifier.setText(GoogleTranslate.translate("en",modifier.getText()));
+                        supp.setText(GoogleTranslate.translate("en",supp.getText()));
+                } catch (IOException ex) {
+                        Logger.getLogger($EquipeInterfaceController$.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
 }

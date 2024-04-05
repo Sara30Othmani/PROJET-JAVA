@@ -11,40 +11,41 @@
 
 <AnchorPane accessibleRole="IMAGE_VIEW" cache="true" cacheHint="QUALITY" depthTest="ENABLE" prefHeight="545.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.$EquipeInterfaceController$">
     <children>
-        <Label layoutX="12.0" layoutY="179.0" text="Nom d'Equipe " />
+        <Label fx:id="nom" layoutX="12.0" layoutY="179.0" text="Nom d'Equipe " />
         <TextField fx:id="lbname" layoutX="116.0" layoutY="174.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="16.0" layoutY="224.0" prefHeight="25.0" prefWidth="79.0" text="ID Equipe" />
+      <Label fx:id="id" layoutX="16.0" layoutY="224.0" prefHeight="25.0" prefWidth="79.0" text="ID Equipe" />
       <TextField fx:id="lbname1" layoutX="116.0" layoutY="223.0" />
-      <Button layoutX="146.0" layoutY="497.0" mnemonicParsing="false" onAction="#AddEquipe" prefHeight="25.0" prefWidth="89.0" text="Ajouter" />
-      <Button layoutX="245.0" layoutY="497.0" mnemonicParsing="false" onAction="#AnnulerAjout" prefHeight="25.0" prefWidth="89.0" text="Annuler" />
+      <Button fx:id="ajout" layoutX="146.0" layoutY="497.0" mnemonicParsing="false" onAction="#AddEquipe" prefHeight="25.0" prefWidth="89.0" text="Ajouter" />
+      <Button fx:id="annule" layoutX="245.0" layoutY="497.0" mnemonicParsing="false" onAction="#AnnulerAjout" prefHeight="25.0" prefWidth="89.0" text="Annuler" />
       <ImageView blendMode="MULTIPLY" fitHeight="185.0" fitWidth="172.0" layoutX="-1.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
           <image>
               <Image url="@FreelanceHorizon.png" />
           </image>
       </ImageView>
-      <TextArea layoutX="82.0" layoutY="110.0" prefHeight="17.0" prefWidth="149.0" text="      Ajouter un Equipe " />
+      <TextArea  layoutX="82.0" layoutY="110.0" prefHeight="17.0" prefWidth="149.0" text="      Ajouter un Equipe " />
       <Separator layoutX="335.0" layoutY="90.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="7.0" />
       <TextArea layoutX="471.0" layoutY="118.0" prefHeight="25.0" prefWidth="161.0" text="      Modifier un Equipe " />
-      <Label layoutX="14.0" layoutY="366.0" text="membres" />
-      <Label layoutX="14.0" layoutY="287.0" text="Description" />
+      <Label fx:id="mem" layoutX="14.0" layoutY="366.0" text="membres" />
+      <Label fx:id="des" layoutX="14.0" layoutY="287.0" text="Description" />
       <TextField fx:id="lbname2" layoutX="119.0" layoutY="273.0" prefHeight="59.0" prefWidth="149.0" />
-      <Button layoutX="382.0" layoutY="495.0" mnemonicParsing="false" onAction="#UpdateEquipe" prefHeight="17.0" prefWidth="106.0" text="Modifier" />
-      <Button layoutX="525.0" layoutY="495.0" mnemonicParsing="false" onAction="#AnnulerUpdate" prefHeight="17.0" prefWidth="106.0" text="supprimer" />
+      <Button fx:id="modifier" layoutX="382.0" layoutY="495.0" mnemonicParsing="false" onAction="#UpdateEquipe" prefHeight="17.0" prefWidth="106.0" text="Modifier" />
+      <Button fx:id="supp" layoutX="525.0" layoutY="495.0" mnemonicParsing="false" onAction="#AnnulerUpdate" prefHeight="17.0" prefWidth="106.0" text="supprimer" />
       <Button layoutX="262.0" layoutY="35.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="168.0" text="Equipe" />
       <Button layoutX="428.0" layoutY="35.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="168.0" text="Role" />
-      <Label layoutX="14.0" layoutY="430.0" prefHeight="25.0" prefWidth="79.0" text="budget" />
+      <Label fx:id="bud" layoutX="14.0" layoutY="430.0" prefHeight="25.0" prefWidth="79.0" text="budget" />
       <TextField fx:id="lbname11" layoutX="119.0" layoutY="429.0" />
       <TextField fx:id="lbname12" layoutX="119.0" layoutY="359.0" />
       <TextField fx:id="nomequipe" layoutX="511.0" layoutY="194.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="406.0" layoutY="194.0" text="Nom d'Equipe " />
-      <Label layoutX="406.0" layoutY="260.0" prefHeight="25.0" prefWidth="79.0" text="ID Equipe" />
+      <Label fx:id="eq" layoutX="406.0" layoutY="194.0" text="Nom d'Equipe " />
+      <Label fx:id="eq1" layoutX="406.0" layoutY="260.0" prefHeight="25.0" prefWidth="79.0" text="ID Equipe" />
       <TextField fx:id="lbname13" layoutX="511.0" layoutY="260.0" />
-      <Label layoutX="406.0" layoutY="329.0" text="Description" />
-      <Label layoutX="406.0" layoutY="433.0" prefHeight="25.0" prefWidth="79.0" text="budget" />
+      <Label fx:id="eq2" layoutX="406.0" layoutY="329.0" text="Description" />
+      <Label fx:id="eq4" layoutX="406.0" layoutY="433.0" prefHeight="25.0" prefWidth="79.0" text="budget" />
       <TextField fx:id="lbname21" layoutX="510.0" layoutY="306.0" prefHeight="59.0" prefWidth="149.0" />
       <TextField fx:id="lbname111" layoutX="511.0" layoutY="435.0" />
-      <Label layoutX="406.0" layoutY="389.0" text="membres" />
+      <Label fx:id="eq3" layoutX="406.0" layoutY="389.0" text="membres" />
       <TextField fx:id="lbname121" layoutX="511.0" layoutY="385.0" />
-      <Button layoutX="27.0" layoutY="495.0" mnemonicParsing="false" onAction="#afficheEquipe" prefHeight="17.0" prefWidth="106.0" text="Afficher" />
+      <Button fx:id="affiche" layoutX="27.0" layoutY="495.0" mnemonicParsing="false" onAction="#afficheEquipe" prefHeight="17.0" prefWidth="106.0" text="Afficher" />
+      <Button layoutX="611.0" layoutY="39.0" mnemonicParsing="false" onAction="#traduire" prefHeight="17.0" prefWidth="61.0" text="traduire" />
     </children>
 </AnchorPane>
