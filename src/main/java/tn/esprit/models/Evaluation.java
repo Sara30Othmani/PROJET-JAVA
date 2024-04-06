@@ -1,4 +1,6 @@
-package tn.esprit.models;
+package evaluation.models;
+
+import tn.esprit.models.Utilisateur;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +21,8 @@ public class Evaluation {
         this.statut = statut;
     }
 
-    // Getters and setters
+    // Getters et setters pour tous les attributs
+
     public float getNote() {
         return note;
     }
