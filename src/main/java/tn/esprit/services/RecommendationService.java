@@ -1,25 +1,20 @@
-package tn.esprit.services;
+package recommendation.services;
 
-import java.util.ArrayList;
+import recommendation.models.Recommendation;
+import tn.esprit.models.Utilisateur;
+
+import java.time.LocalDateTime;
 import java.util.List;
-import tn.esprit.models.Recommendation;
 
 public class RecommendationService {
-    private List<Recommendation> recommendations;
-
-    public RecommendationService() {
-        this.recommendations = new ArrayList<>();
+    public void ajouterRecommendation(String contenu, Utilisateur utilisateur) {
+        LocalDateTime dateCreation = LocalDateTime.now();
+        Recommendation recommendation = new Recommendation(contenu, utilisateur, dateCreation);
+        // Logique pour ajouter la recommandation à votre système de gestion de données
     }
 
-    public void ajouterRecommendation(Recommendation recommendation) {
-        recommendations.add(recommendation);
-    }
-
-    public void supprimerRecommendation(Recommendation recommendation) {
-        recommendations.remove(recommendation);
-    }
-
-    public List<Recommendation> obtenirToutesRecommandations() {
-        return recommendations;
+    public List<Recommendation> obtenirRecommendations(Utilisateur utilisateur) {
+        // Logique pour obtenir les recommandations associées à un utilisateur donné depuis votre système de gestion de données
+        return null; // Remplacer null par la liste réelle des recommandations
     }
 }
