@@ -8,11 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tn.esprit.Utils.MaConnexion;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class ResetPassword {
@@ -33,27 +38,66 @@ public class ResetPassword {
         return properties;
     }
 
-    @FXML
+    /*@FXML
     public void initialize() {
         if (EmailReset != null) {
             System.out.println("TFEmailReset is not null");
         } else {
             System.out.println("TFEmailReset is null");
         }
+    }*/
+
+    private void updatePasswordInDatabase(String recipientEmail, String newPassword) {
+        try (Connection conn = MaConnexion.getInstance().getCnx()) {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Utilisateur SET password = ? WHERE adresseMail = ?");
+            stmt.setString(1, newPassword);
+            stmt.setString(2, recipientEmail);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Mot de passe mis à jour avec succès dans la base de données.");
+            } else {
+                System.out.println("Impossible de mettre à jour le mot de passe dans la base de données.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void Reset(ActionEvent event) {
         if (EmailReset != null) {
             String recipientEmail = EmailReset.getText();
 
-            // Générer un nouveau mot de passe aléatoire ici
             String newPass = generateRandomPassword();
 
-            // Envoyer l'e-mail avec le nom d'utilisateur et le mot de passe Gmail
+            // Envoyer l'email avec le nouveau mot de passe
             sendEmail(USERNAME, PASSWORD, recipientEmail, newPass);
+
+            // Mettre à jour le nouveau mot de passe dans la base de données
+            updatePasswordInDatabase(recipientEmail, newPass);
+
+            // Redirection vers la page de connexion
+            RedirectLogIn(event);
         } else {
             System.out.println("TFEMailReset n'a pas été initialisé correctement.");
         }
+    }
+
+
+
+    private boolean isEmailRegistered(String email) {
+        try (Connection conn = MaConnexion.getInstance().getCnx();
+             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM Utilisateur WHERE adresseMail = ?")) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

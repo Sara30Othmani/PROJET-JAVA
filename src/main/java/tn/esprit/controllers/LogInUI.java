@@ -9,13 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import tn.esprit.Utils.MaConnexion;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class LogInUI {
 
@@ -24,6 +20,10 @@ public class LogInUI {
 
     @FXML
     private PasswordField TFPassword;
+
+    private final String url = "jdbc:mysql://localhost:3306/java";
+    private final String login = "root";
+    private final String pwd = "root";
 
     @FXML
     void LogIn(ActionEvent event) {
@@ -43,10 +43,7 @@ public class LogInUI {
     }
 
     private boolean authenticateUser(String email, String password) {
-        MaConnexion maConnexion = MaConnexion.getInstance();
-        Connection connection = maConnexion.getCnx();
-
-        try {
+        try (Connection connection = DriverManager.getConnection(url, login, pwd)) {
             String sql = "SELECT * FROM Utilisateur WHERE adresseMail = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
@@ -60,6 +57,7 @@ public class LogInUI {
             return false;
         }
     }
+
 
     public void RedirectSignup(ActionEvent event) {
         try {
