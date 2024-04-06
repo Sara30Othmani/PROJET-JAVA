@@ -2,10 +2,14 @@ package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.Utils.MaConnexion;
 
 import java.io.IOException;
@@ -73,9 +77,6 @@ public class $EquipeInterfaceController$ {
         private Button annule;
         @FXML
         private Button modifier;
-
-
-
 
 
         @FXML
@@ -189,18 +190,42 @@ public class $EquipeInterfaceController$ {
         }
 
 
-
-                @FXML
-        void AnnulerUpdate(ActionEvent event) {
-                clearFields();
-                showAlert("Info", "Mise à jour annulée.");
-        }
-
         @FXML
         void AnnulerAjout(ActionEvent event) {
                 clearFields();
-                showAlert("Info", "Ajout annulé.");
+                showAlert("Info", "ajout annulée.");
         }
+
+        @FXML
+        void supprimer(ActionEvent event) {
+                // Obtention de l'ID de l'équipe à supprimer
+                String idEquipe = lbname13.getText();
+
+                // Vérification si l'ID est vide
+                if (idEquipe.isEmpty()) {
+                        showAlert("Erreur", "Veuillez saisir l'ID de l'équipe à supprimer.");
+                        return;
+                }
+
+                try {
+                        Connection connection = MaConnexion.getInstance().getCnx();
+                        String sql = "DELETE FROM equipe WHERE id = ?";
+                        PreparedStatement statement = connection.prepareStatement(sql);
+                        statement.setString(1, idEquipe);
+
+                        int rowsAffected = statement.executeUpdate();
+
+                        // Vérification si l'équipe a été supprimée avec succès
+                        if (rowsAffected > 0) {
+                                showAlert("Succès", "L'équipe a été supprimée avec succès.");
+                        } else {
+                                showAlert("Erreur", "Aucune équipe trouvée avec cet ID.");
+                        }
+                } catch (SQLException e) {
+                        showAlert("Erreur", "Erreur lors de la suppression de l'équipe : " + e.getMessage());
+                }
+        }
+
 
         private void showAlert(String title, String message) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -220,23 +245,40 @@ public class $EquipeInterfaceController$ {
         @FXML
         private void traduire(ActionEvent event) {
                 try {
-                        nom.setText(GoogleTranslate.translate("en",nom.getText()));
-                        id.setText(GoogleTranslate.translate("en",id.getText()));
-                        des.setText(GoogleTranslate.translate("en",des.getText()));
-                        mem.setText(GoogleTranslate.translate("en",mem.getText()));
-                        bud.setText(GoogleTranslate.translate("en",bud.getText()));
-                        eq.setText(GoogleTranslate.translate("en",eq.getText()));
-                        eq1.setText(GoogleTranslate.translate("en",eq1.getText()));
-                        eq2.setText(GoogleTranslate.translate("en",eq2.getText()));
-                        eq3.setText(GoogleTranslate.translate("en",eq3.getText()));
-                        eq4.setText(GoogleTranslate.translate("en",eq4.getText()));
-                        annule.setText(GoogleTranslate.translate("en",annule.getText()));
-                        affiche.setText(GoogleTranslate.translate("en",affiche.getText()));
-                        ajout.setText(GoogleTranslate.translate("en",ajout.getText()));
-                        modifier.setText(GoogleTranslate.translate("en",modifier.getText()));
-                        supp.setText(GoogleTranslate.translate("en",supp.getText()));
+                        nom.setText(GoogleTranslate.translate("en", nom.getText()));
+                        id.setText(GoogleTranslate.translate("en", id.getText()));
+                        des.setText(GoogleTranslate.translate("en", des.getText()));
+                        mem.setText(GoogleTranslate.translate("en", mem.getText()));
+                        bud.setText(GoogleTranslate.translate("en", bud.getText()));
+                        eq.setText(GoogleTranslate.translate("en", eq.getText()));
+                        eq1.setText(GoogleTranslate.translate("en", eq1.getText()));
+                        eq2.setText(GoogleTranslate.translate("en", eq2.getText()));
+                        eq3.setText(GoogleTranslate.translate("en", eq3.getText()));
+                        eq4.setText(GoogleTranslate.translate("en", eq4.getText()));
+                        annule.setText(GoogleTranslate.translate("en", annule.getText()));
+                        affiche.setText(GoogleTranslate.translate("en", affiche.getText()));
+                        ajout.setText(GoogleTranslate.translate("en", ajout.getText()));
+                        modifier.setText(GoogleTranslate.translate("en", modifier.getText()));
+                        supp.setText(GoogleTranslate.translate("en", supp.getText()));
                 } catch (IOException ex) {
                         Logger.getLogger($EquipeInterfaceController$.class.getName()).log(Level.SEVERE, null, ex);
                 }
+        }
+
+        @FXML
+        void ouvrirRole(ActionEvent event) {
+                try {
+                        // Charger le deuxième fichier FXML
+                        Parent root = FXMLLoader.load(getClass().getResource("/role.fxml"));
+
+                        // Créer une nouvelle fenêtre
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root, 800, 600));
+                        stage.show();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+
+
         }
 }

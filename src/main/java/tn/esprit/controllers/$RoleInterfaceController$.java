@@ -2,16 +2,37 @@ package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.Utils.MaConnexion;
+import tn.esprit.services.GoogleTranslate;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class $RoleInterfaceController$ {
-
+    @FXML
+    private Label memb;
+    @FXML
+    private Label idr;
+    @FXML
+    private Label nomr;
+    @FXML
+    private Label desr;
+    @FXML
+    private Button valid;
+    @FXML
+    private Button annuler;
     @FXML
     private TextField lbname11;
 
@@ -71,5 +92,33 @@ public class $RoleInterfaceController$ {
         lbname111.clear();
         lbname1111.clear();
         lbname1112.clear();
+    }
+    @FXML
+    private void traduire(ActionEvent event) {
+        try {
+            memb.setText(GoogleTranslate.translate("en",memb.getText()));
+            idr.setText(GoogleTranslate.translate("en",idr.getText()));
+            desr.setText(GoogleTranslate.translate("en",desr.getText()));
+            nomr.setText(GoogleTranslate.translate("en",nomr.getText()));
+            annuler.setText(GoogleTranslate.translate("en",annuler.getText()));
+            valid.setText(GoogleTranslate.translate("en",valid.getText()));
+
+        } catch (IOException ex) {
+            Logger.getLogger($EquipeInterfaceController$.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void ouvrirequipe(ActionEvent actionEvent) {
+        try {
+            // Charger le deuxième fichier FXML
+            Parent root = FXMLLoader.load(getClass().getResource("/equipe.fxml"));
+
+            // Créer une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
