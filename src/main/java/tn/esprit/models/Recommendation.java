@@ -1,29 +1,28 @@
-package tn.esprit.models;
+package recommendation.models;
+
+import tn.esprit.models.Utilisateur;
 
 import java.time.LocalDateTime;
 
 public class Recommendation {
-    private String message;
+    private String contenu;
     private Utilisateur utilisateur;
     private LocalDateTime dateCreation;
-    private String categorie;
-    private String statut;
 
-    public Recommendation(String message, Utilisateur utilisateur, LocalDateTime dateCreation, String categorie, String statut) {
-        this.message = message;
+    public Recommendation(String contenu, Utilisateur utilisateur, LocalDateTime dateCreation) {
+        this.contenu = contenu;
         this.utilisateur = utilisateur;
         this.dateCreation = dateCreation;
-        this.categorie = categorie;
-        this.statut = statut;
     }
 
-    // Getters and setters
-    public String getMessage() {
-        return message;
+    // Getters et setters pour tous les attributs
+
+    public String getContenu() {
+        return contenu;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
     }
 
     public Utilisateur getUtilisateur() {
@@ -40,21 +39,5 @@ public class Recommendation {
 
     public void setDateCreation(LocalDateTime dateCreation) {
         this.dateCreation = dateCreation;
-    }
-
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public String getStatut() {
-        return statut;
-    }
-
-    public void setStatut(String statut) {
-        this.statut = statut;
     }
 }
