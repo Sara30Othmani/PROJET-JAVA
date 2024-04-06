@@ -35,11 +35,6 @@
                 <Font size="13.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="351.0" layoutY="733.0" prefHeight="21.0" prefWidth="107.0" text="Log in" textFill="#0044ff">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Label>
         <Label layoutX="126.0" layoutY="457.0" prefHeight="17.0" prefWidth="107.0" text="Your hourly rate :" />
         <Label layoutX="126.0" layoutY="348.0" prefHeight="17.0" prefWidth="59.0" text="Skills :" />
         <Separator layoutX="124.0" layoutY="689.0" prefHeight="10.0" prefWidth="561.0" />
@@ -55,5 +50,6 @@
         <TextField fx:id="TFHourlyRate" layoutX="261.0" layoutY="453.0" prefHeight="25.0" prefWidth="284.0" />
         <TextArea fx:id="TFSkills" layoutX="264.0" layoutY="331.0" prefHeight="51.0" prefWidth="284.0" />
         <TextArea fx:id="TFCertifications" layoutX="261.0" layoutY="499.0" prefHeight="51.0" prefWidth="284.0" />
+      <Button fx:id="RedirectLogIn" layoutX="364.0" layoutY="739.0" mnemonicParsing="false" onAction="#RedirectLogIn" prefHeight="35.0" prefWidth="79.0" text="Log In" />
     </children>
 </AnchorPane>

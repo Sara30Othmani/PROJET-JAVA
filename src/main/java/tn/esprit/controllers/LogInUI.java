@@ -2,14 +2,16 @@ package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import tn.esprit.Utils.MaConnexion;
+import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 
 public class LogInUI {
 
@@ -18,6 +20,10 @@ public class LogInUI {
 
     @FXML
     private PasswordField TFPassword;
+
+    private final String url = "jdbc:mysql://localhost:3306/java";
+    private final String login = "root";
+    private final String pwd = "root";
 
     @FXML
     void LogIn(ActionEvent event) {
@@ -37,10 +43,7 @@ public class LogInUI {
     }
 
     private boolean authenticateUser(String email, String password) {
-        MaConnexion maConnexion = MaConnexion.getInstance();
-        Connection connection = maConnexion.getCnx();
-
-        try {
+        try (Connection connection = DriverManager.getConnection(url, login, pwd)) {
             String sql = "SELECT * FROM Utilisateur WHERE adresseMail = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
@@ -55,4 +58,32 @@ public class LogInUI {
         }
     }
 
+
+    public void RedirectSignup(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUp.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void RedirectPassword(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResetPassword.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

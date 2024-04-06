@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
@@ -29,11 +30,6 @@
                 <InnerShadow />
             </effect>
         </Label>
-        <Label alignment="CENTER_RIGHT" layoutX="422.0" layoutY="419.0" prefHeight="21.0" prefWidth="114.0" text="Forgot password?" textFill="RED">
-            <font>
-                <Font name="System Bold Italic" size="13.0" />
-            </font>
-        </Label>
         <Button layoutX="298.0" layoutY="464.0" mnemonicParsing="false" onAction="#LogIn" prefHeight="45.0" prefWidth="193.0" text="Log In">
             <font>
                 <Font size="20.0" />
@@ -46,10 +42,11 @@
                 <Font size="13.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="340.0" layoutY="591.0" prefHeight="21.0" prefWidth="107.0" text="Sign up now!" textFill="#0044ff">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Label>
+      <Button fx:id="RedirectSignup" layoutX="334.0" layoutY="593.0" mnemonicParsing="false" onAction="#RedirectSignup" prefHeight="39.0" prefWidth="121.0" text="Sign up now!" />
+      <Hyperlink fx:id="RedirectPassword" layoutX="421.0" layoutY="418.0" onAction="#RedirectPassword" text="Forgot password?">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Hyperlink>
     </children>
 </AnchorPane>
